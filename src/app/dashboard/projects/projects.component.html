@@ -1,0 +1,97 @@
+<div class="container">
+    <div class="reglist">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>  Name</th>
+            <th>Description</th> 
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of projects; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ project.name }}</td>
+            <td>{{ project.description }}</td>  
+            <td>
+              <button type="button" class="btn btn-info" (click)="onEdit(i)">Edit</button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger" (click)="onDelete(project)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary" (click)="onNew()">New</button>
+      </div>
+    </div>
+    <br>
+    <div class="regentry" *ngIf="showNew">
+      <form (ngSubmit)="onSave()">
+        <div class="form-group row">
+          <label for="name-input" class="col-2 col-form-label">  Name</label>
+          <div class="col-10">
+            <input class="form-control" type="text" [(ngModel)]="regModel.name" name="name">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="description-input" class="col-2 col-form-label">Description</label>
+          <div class="col-10">
+            <input class="form-control" type="text" [(ngModel)]="regModel.description" name="description">
+          </div>
+        </div>
+         
+        <!-- <div class="form-group row">
+          <label for="city-input" class="col-2 col-form-label">Country</label>
+          <div class="col-10 dropdown" ngbDropdown myDrop="ngbDropdown">
+            <button type="button" class="btn btn-outline-primary" id="dropdownManual" name="country" ngbDropdownToggle>{{regModel.country}}</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownManual">
+              <button type="button" class="dropdown-item" *ngFor="let country of countries" (click)="onChangeCountry(country)">{{country}}</button>
+            </div>
+          </div>
+        </div> -->
+        <button type="submit" class="btn btn-success">{{submitType}}</button>
+        <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+      </form>
+    </div>
+  </div>
+  <!-- <div class="container-fluid">
+    <h1 class="mt-4">Simple Sidebar</h1>
+    <div *ngIf="projects?.length > 0;else noProjects">
+  <ul *ngFor="let project of projects" class="collection">
+    <li class="collection-item" (dblclick)="deleteproject($event, project)">
+      <strong>{{ project.title }}</strong> : {{ project.description }} 
+      <a href="#" class="secondary-content">
+        <i (click)="deleteProject($event, project)" class="fa fa-trash"></i>
+        <i (click)="editProject($event, project)" class="fa fa-pencil"></i>
+      </a>
+      <div *ngIf="editState && projectToEdit.id === project.id">
+        <form (ngSubmit)="updateProject(project)">
+          <div class="row">
+            <div class="input-field col s6">
+              <input 
+                type="text" name="title"
+                placeholder="Edit name" [(ngModel)]="project.title">
+            </div>
+            <div class="input-field col s6">
+                <input 
+                  type="text" name="description"
+                  placeholder="Edit Description" [(ngModel)]="project.description">
+            </div>
+            <input type="submit" class="btn" value="Update project">
+            <button class="btn red" (click)="deleteProject($event, project)">Delete Project</button>
+          </div>
+        </form>
+      </div>
+
+    </li>
+  </ul>
+    </div>
+
+<ng-template #noProjects>
+  <h5>There is not projects yet.</h5>
+</ng-template>
+</div> -->
